@@ -10,13 +10,38 @@ module.exports = function (app) {
     }).then(function (results) {
       res.json(results);
     });
+    /* var data= {
+      note: "You connected to the server",
+
+    }; */
+    res.json(data);
   });
 
-  // Get all study groups
-  app.get("/api/groups", function (req, res) {
-    studyGroup.findAll({}).then(function (results) {
-      res.json(results);
+  // Create a new event
+  app.post("/api/events/create", function(req, res) {
+    //req.body needs to match up with schema in DB
+    db.Examples.create(req.body).then(function(dbExample) {
+      //dbExample not needed as parameter above since we aren't using it, doesn't harm to have
+      /* res.json(dbExample); */
+      res.redirect("/events/all");
+      // format to look more like sql query
     });
+/*    var postData = req.body
+   res.json(postData); */
+  
+  });
+// create new
+  app.post("/api/profile/create", function(req, res) {
+    //req.body needs to match up with schema in DB
+    db.Examples.create(req.body).then(function(dbExample) {
+      //dbExample not needed as parameter above since we aren't using it
+      /* res.json(dbExample); */
+      res.redirect("/events/all");
+      // format to look more like sql query
+    });
+/*    var postData = req.body
+   res.json(postData); */
+  
   });
 
   // Get study groups by category
@@ -63,6 +88,21 @@ module.exports = function (app) {
       }
     }).then(function (results) {
       res.json(results);
+  // delete event by id
+    })
+  })
+  app.delete("/api/events/:id", function(req, res) {
+    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+      res.json(dbExample);
     });
   });
 };
+
+
+ /*  // Delete an profile by id
+  app.delete("/api/profile/:id", function(req, res) {
+    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+      res.json(dbExample);
+    });
+  }); */
+
