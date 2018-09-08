@@ -1,5 +1,13 @@
 var db = require("../models");
 
+var locations = [
+  {
+    location: ""
+  }, {
+    location: ""
+  }
+];
+
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -56,9 +64,8 @@ module.exports = function(app) {
 
   app.get("/events/:id", function(req, res) {
     db.Example.findOne({where: { id: req.params.id}}).then(function(dbExamples) {
-      res.render("eventSpecificEvent", {
-        msg: "Time to Study Up!!",
-        event: dbEvent
+      res.render("view-event", {
+        location: "San Francisco, CA"
       });
     });
   });
