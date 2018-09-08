@@ -1,15 +1,16 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+       "password": "password",
     "database": "studyup_test",
+
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "Dr_Strang3",
-    "database": "studyup_test",
+    "password": "Haven1803",
+    "database": "studydb",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false

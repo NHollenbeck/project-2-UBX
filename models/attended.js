@@ -1,7 +1,19 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var attended = sequelize.define("attended_events", {
-    userID: DataTypes.STRING,
-    eventID: DataTypes.STRING
+    userID: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    eventID: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    }
   });
   return attended;
 };
