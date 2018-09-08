@@ -1,29 +1,27 @@
 <div class="container">
     <div class="row">
-      <div class="row">
-        <div class="col-sm-2 mt-4">
-          <a class="btn btn-light" href="/blog">Go to Events</a>
-        </div>
-      </div>
-      <div class="col-md-5 offset-md-3">
-        <form id="cms">
-          <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title">
-            <br />
-            <label for="body">Body:</label>
-            <textarea class="form-control" rows="10" id="body"></textarea>
-            <label for="category">Category:</label>
-            <input type="text" class="form-control" id="category">
-            <br />
-            <label for="location">Location:</label>
-            <input type="text" class="form-control" id="location"><label for="time">Time:</label>
-            <input type="text" class="form-control" id="time"><label for="host">Host:</label>
-            <input type="text" class="form-control" id="host">
-            <button type="submit" class="btn btn-success submit btn-lg">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
 
-    <script src="../public/js/create-event.js" type="text/javascript"></script>
+        <div class="col-sm-12">
+            <h1>Create Event</h1>
+            <hr>
+            <form action="/profile/create-event" method="post">
+                <label for="eventTitle">Title</label>
+                <input type="text" name="eventTitle" class="form-control" id="create-event-title">
+                <label for="eventImageUrl">Image Url</label>
+                <input type="text" name="eventImageUrl" class="form-control" id="create-event-ImageUrl">
+                <label for="eventLocation">Location</label>
+                <input type="text" name="eventLocation" class="form-control" id="create-event-location">
+                <label for="eventTime">Date & Time</label>
+                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                    <input type="text" name="eventTime" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
+                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+                <label for="eventBio">Information</label>
+                <textarea name="eventBio" id="create-event-bio" class="form-control" cols="30" rows="10"></textarea>
+                <input type="submit" class="btn btn-success" value="Create Event">
+            </form>
+        </div>
+    </div>
+</div>
