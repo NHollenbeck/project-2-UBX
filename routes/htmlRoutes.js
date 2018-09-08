@@ -14,21 +14,16 @@ module.exports = function(app) {
   app.get("/profile/create", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.render("profileCreatePage", {
-       /*  msg: "Welcome!",
+        /*  msg: "Welcome!",
         examples: dbExamples */
       });
     });
   });
 
-
   // For example below and event by ID, we either want to refer to specific table (user vs event) or have specific columns (ie userID vs eventID)
-  app.get("/profile/:id", function(req, res) {
-    db.Example.findOne({where: { id: req.params.id}}).then(function(dbExamples) {
-      res.render("profileViewPage", {
-        msg: "User Info!",
-        examples: dbUser
-      });
-    });
+  app.get("/profile", function(req, res) {
+    console.log(`Profile User: ${req.user}`);
+    res.render("profile");
   });
   // send to FE, in HB "data.msg"
 
@@ -50,11 +45,13 @@ module.exports = function(app) {
     });
   });
 
-  // Join to pull all events for 1 user, 
+  // Join to pull all events for 1 user,
   // join to show all users for a given event
 
   app.get("/events/:id", function(req, res) {
-    db.Example.findOne({where: { id: req.params.id}}).then(function(dbExamples) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(
+      dbExamples
+    ) {
       res.render("view-event", {
         location: "San Francisco, CA"
       });
@@ -71,7 +68,7 @@ module.exports = function(app) {
   }); */
 
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
+  // app.get("*", function(req, res) {
+  //   res.render("404");
+  // });
 };
