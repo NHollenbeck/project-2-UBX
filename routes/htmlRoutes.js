@@ -1,4 +1,5 @@
 var db = require("../models");
+
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -49,9 +50,13 @@ module.exports = function(app) {
   // join to show all users for a given event
 
   app.get("/events/:id", function(req, res) {
+<<<<<<< HEAD
     db.Example.findOne({ where: { id: req.params.id } }).then(function(
       dbExamples
     ) {
+=======
+    db.Example.findOne({where: { id: req.params.id}}).then(function(dbExamples) {
+>>>>>>> added map
       res.render("view-event", {
         location: "San Francisco, CA"
       });
