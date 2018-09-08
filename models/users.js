@@ -1,16 +1,11 @@
-var Sequelize = require("sequelize");
-var sequelize = require("../config/config.json");
-
-var users = sequelize.define("users", {
-    username: Sequelize.STRING,
-    password: Sequelize.STRING,
-    fullname: Sequelize.STRING,
-    firstname: Sequelize.STRING,
-    lastname: Sequelize.STRING,
-    imgurl: Sequelize.STRING
-});
-
-
-users.sync();
-
-module.exports = users;
+module.exports = function(sequelize, DataTypes) {
+  var user = sequelize.define("user", {
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+    fullname: DataTypes.STRING,
+    firstname: DataTypes.STRING,
+    lastname: DataTypes.STRING,
+    imgurl: DataTypes.STRING
+  });
+  return user;
+};

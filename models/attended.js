@@ -1,10 +1,7 @@
-var Sequelize = require("sequelize");
-var sequelize = require("../config/config.json");
-
-var attended = sequelize.define("attended_events", {
-
-});
-
-attended.sync();
-
-module.exports = attended;
+module.exports = function(sequelize, DataTypes) {
+  var attended = sequelize.define("attended_events", {
+    userID: DataTypes.STRING,
+    eventID: DataTypes.STRING
+  });
+  return attended;
+};
