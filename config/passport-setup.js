@@ -1,5 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
+const FacebookStrategy = require("passport-facebook");
 const keys = require("./keys");
 const User = require("../models/users");
 var db = require("../models");
@@ -24,9 +25,6 @@ passport.use(
       clientSecret: keys.google.clientSecret
     },
     (accessToken, refreshToken, profile, done) => {
-      const location = profile._json.placesLived
-        ? profile._json.placesLived[0].value
-        : null;
       // passport callback function
       db.user
         .findOrCreate({
@@ -37,7 +35,41 @@ passport.use(
             fullname: profile.displayName,
             firstname: profile.name.givenName,
             lastname: profile.name.familyName,
-            imageurl: profile.photos[0].value
+            imgurl: profile.photos[0].value
+          }
+        })
+        .spread((user, created) => {
+          console.log(user);
+          const currentUser = user.get({
+            plain: true
+          });
+          console.log(currentUser);
+          done(null, currentUser);
+        });
+    }
+  )
+);
+
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: keys.facebook.appID,
+      clientSecret: keys.facebook.appSecret,
+      callbackURL: "/auth/facebook/redirect",
+      profileFields: ["id", "emails", "displayName", "name", "gender", "photos"]
+    },
+    function(accessToken, refreshToken, profile, done) {
+      profile = profile._json;
+      db.user
+        .findOrCreate({
+          where: { password: profile.id },
+          defaults: {
+            username: profile.name,
+            password: profile.id,
+            fullname: profile.name,
+            firstname: profile.first_name,
+            lastname: profile.last_name,
+            imgurl: profile.picture.data.url
           }
         })
         .spread((user, created) => {

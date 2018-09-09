@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+    "password": "Dr_Strang3",
     "database": "studyup_test",
     "host": "localhost",
     "dialect": "mysql"

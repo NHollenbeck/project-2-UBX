@@ -18,8 +18,19 @@ router.get(
 );
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  console.log(`User from the redirect rout: ${req.user}`);
+  console.log(`User from the google redirect route: ${req.user}`);
   res.redirect("/profile");
 });
+
+router.get("/facebook", passport.authenticate("facebook"));
+
+router.get(
+  "/facebook/redirect",
+  passport.authenticate("facebook"),
+  (req, res) => {
+    console.log(`User from the facebook route: ${JSON.stringify(req.user)}`);
+    res.redirect("/profile");
+  }
+);
 
 module.exports = router;
