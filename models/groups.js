@@ -1,11 +1,41 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var studyGroup = sequelize.define("studyGroup", {
-    title: DataTypes.STRING,
-    body: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      },
+    },
+    body: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        len: [1]
+      },
+    },
     category: DataTypes.STRING,
-    loaction: DataTypes.STRING,
-    time: DataTypes.DATE,
-    host: DataTypes.STRING
+    loaction: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      },
+    },
+    time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        len: [1]
+      },
+    },
+    host: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
   });
   return studyGroup;
 };
