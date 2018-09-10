@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+
+   
+
        "password": "password",
+
     "database": "studyup_test",
 
     "host": "localhost",

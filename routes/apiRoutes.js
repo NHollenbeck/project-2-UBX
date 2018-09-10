@@ -71,6 +71,11 @@ module.exports = function(app) {
       });
   });
 
+app.get('/api/eventlist', function(req, res) {
+  res.json()
+});
+
+
   // Create a new study group
   app.post("/api/new-group", function(req, res) {
     studyGroup
