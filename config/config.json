@@ -2,9 +2,7 @@
   "development": {
     "username": "root",
 
-   
-
-       "password": "password",
+    "password": "password",
 
     "database": "studyup_test",
 
