@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module.exports = function (sequelize, DataTypes) {
   var user = sequelize.define("user", {
     username: {
@@ -35,7 +36,16 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
+=======
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define("User", {
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+    fullname: DataTypes.STRING,
+    firstname: DataTypes.STRING,
+    lastname: DataTypes.STRING,
+>>>>>>> added style to view-profile and centered create-profile page
     imgurl: DataTypes.STRING
   });
-  return user;
+  return User;
 };
