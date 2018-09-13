@@ -1,9 +1,5 @@
 var db = require("../models");
 
-<<<<<<< HEAD
-=======
-
->>>>>>> added style to view-profile and centered create-profile page
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -18,35 +14,20 @@ module.exports = function(app) {
 
   app.get("/profile/create", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
-<<<<<<< HEAD
-      res.render("profileCreatePage", {
-        /*  msg: "Welcome!",
-=======
-      res.render("create-profile", {
-       /*  msg: "Welcome!",
->>>>>>> added style to view-profile and centered create-profile page
-        examples: dbExamples */
-      });
+      res.render("profileCreatePage", {});
     });
   });
 
-  // For example below and event by ID, we either want to refer to specific table (user vs event) or have specific columns (ie userID vs eventID)
-<<<<<<< HEAD
-  app.get("/profile", function(req, res) {
-    console.log(`Profile User: ${req.user}`);
-    res.render("profile");
-=======
   app.get("/profile/:id", function(req, res) {
-    db.User.findOne({where: { id: +req.params.id}}).then(function(dbUser) {
+    db.User.findOne({ where: { id: +req.params.id } }).then(function(dbUser) {
       console.log(dbUser);
       console.log(dbUser.imgurl);
-      
+
       res.render("view-profile", {
         msg: "User Info!",
         dbUser: dbUser
       });
     });
->>>>>>> added style to view-profile and centered create-profile page
   });
 
   // send to FE, in HB "data.msg"
@@ -81,13 +62,9 @@ module.exports = function(app) {
   // join to show all users for a given event
 
   app.get("/events/:id", function(req, res) {
-<<<<<<< HEAD
     db.Example.findOne({ where: { id: req.params.id } }).then(function(
       dbExamples
     ) {
-=======
-    db.Example.findOne({where: { id: req.params.id}}).then(function(dbExamples) {
->>>>>>> added map
       res.render("view-event", {
         location: "San Francisco, CA"
       });
