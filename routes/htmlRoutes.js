@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const authCheck = require("../Lib/AuthCheck");
 var db = require("../models");
+const moment = require("moment");
 
 // CHANGE below (removing db functionality, just rendering)
 router.get("/", (req, res) => {
@@ -48,7 +49,7 @@ router.get("/profile", authCheck, function(req, res) {
               res.render("profile", {
                 pageTitle: req.user.username + " | Study Up!",
                 activeUser: req.user,
-                createdAt: req.user.createdAt,
+                createdAt: moment(req.user.createdAt).format("MMM YYYY"),
                 imgurl: req.user.imgurl,
                 username: req.user.username,
                 firstname: req.user.firstname,
@@ -118,13 +119,13 @@ router.get("/events/event", (req, res) => {
           activeUser: req.user,
           fullName: host.fullname,
           profileImg: host.imgurl,
-          memberSince: host.createdAt,
+          memberSince: moment(host.createdAt).format("MMM YYYY"),
           cannotAttend: cannotAttend,
           eventid: eventInfo.id,
           title: eventInfo.title,
           body: eventInfo.body,
           location: eventInfo.loaction,
-          time: eventInfo.time,
+          time: moment(eventInfo.time).format("dddd, MMMM Do YYYY, h:mm a"),
           imgurl: eventInfo.imgurl
         });
       });

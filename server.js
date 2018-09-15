@@ -3,6 +3,7 @@ require("./config/passport-setup");
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
+const HandlebarsIntl = require("handlebars-intl");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
@@ -18,6 +19,7 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/public", express.static("public"));
+// HandlebarsIntl.registerWith(exphbs);
 
 // Passport Init & Session
 app.use(
