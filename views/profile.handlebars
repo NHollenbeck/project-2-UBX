@@ -1,20 +1,20 @@
 <div class="container">
     <div class="row">
         <div class="col-md-5  toppad  pull-right col-md-offset-3">
-            <p class="text-info">Profile created on: {{ dbUser.createdAt }} </p>
+            <p class="text-info">Profile created on: {{ createdAt }} </p>
         </div>
     </div>
     <div class="mx-auto">
         <div class="border border-info shadow-lg p-3 mb-5 bg-white rounded">
             <div class="row justify-content-center">
                 <!-- Image -->
-                <img src="{{ dbUser.imgurl }}" class="rounded-circle ">
+                <img src="{{ imgurl }}" class="rounded-circle ">
             </div>
             <div class="button" style="float:right;">
                 <a href="#" class="btn btn-outline-success btn-sm">Create Event</a>
             </div>
             <div class="panel-heading">
-                <h3 class="panel-title">{{ dbUser.username }}</h3>
+                <h3 class="panel-title">{{ username }}</h3>
             </div>
             <panel class="body">
                 <div class="row">
@@ -23,13 +23,13 @@
                             <tbody>
                                 <tr>
                                     <td>First-name:</td>
-                                    <td>{{ dbUser.firstname }}</td>
+                                    <td>{{ firstname }}</td>
                                 </tr>
                                 <tr>
                                     <td>Last-name:</td>
-                                    <td>{{ dbUser.lastname }}</td>
+                                    <td>{{ lastname }}</td>
                                 </tr>
-                            
+
                             </tbody>
                         </table>
                     </div>
@@ -38,47 +38,39 @@
         </div>
         <br>
         <h3>Your upcoming events:</h3>
+        {{#each eventsAttending}}
         <div class="card p-3 mb-2 bg-primary text-black " style="width: 18rem;">
-            <button type="button" class="close" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-                 <div class="card-body">
-                <h5 class="card-title">Event title: {{ this.title }}</h5>
-                <p class="card-text">Description: {{ this.body }}</p>
+            <div class="card-body">
+                <h5 class="card-title">Event title: {{ dataValues.title }}</h5>
             </div>
-                <a href="https://placeholder.com"><img src="https://via.placeholder.com/350x150" class="card-img-top "></a>
-       
+            <a href="https://placeholder.com"><img src="https://via.placeholder.com/350x150" class="card-img-top "></a>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Category: {{ this.category }}</li>
-                <li class="list-group-item">Location: {{this.location }}</li>
-                <li class="list-group-item">Time: {{ this.time }}</li>
-                <li class="list-group-item">Host: {{ this.host }}</li>
+                <li class="list-group-item">Location: {{dataValues.loaction }}</li>
+                <li class="list-group-item">Time: {{ dataValues.time }}</li>
             </ul>
             <div class="card-body">
-                <a href="#" class="card-link text-white">Card link</a>
+                <a href="/events/event?id={{dataValues.id}}" class="card-link text-white">Card link</a>
             </div>
         </div>
+        {{/each}}
         <br>
         <h3>Created events:</h3>
+        {{#each eventsHosting}}
         <div class="card p-3 mb-2 bg-secondary text-black" style="width: 18rem;">
-            <button type="button" class="close" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-                 <div class="card-body">
-                <h5 class="card-title">Event title: {{ this.title }}</h5>
-                <p class="card-text">Description: {{ this.body }}</p>
+            <div class="card-body">
+                <h5 class="card-title">Event title: {{ dataValues.title }}</h5>
             </div>
-                <a href="https://placeholder.com"><img src="https://via.placeholder.com/350x150" class="card-img-top "></a>
-       
+            <a href="https://placeholder.com"><img src="https://via.placeholder.com/350x150" class="card-img-top "></a>
+
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Category: {{ this.category }}</li>
-                <li class="list-group-item">Location: {{this.location }}</li>
-                <li class="list-group-item">Time: {{ this.time }}</li>
+                <li class="list-group-item">Location: {{dataValues.loaction }}</li>
+                <li class="list-group-item">Time: {{ dataValues.time }}</li>
             </ul>
             <div class="card-body">
-                <a href="#" class="card-link text-white">Card link</a>
+                <a href="/events/event?id={{dataValues.id}}" class="card-link text-white">Card link</a>
             </div>
         </div>
+        {{/each}}
     </div>
 </div>
 

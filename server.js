@@ -7,6 +7,7 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
 const authRoutes = require("./routes/auth-routes");
+const htmlRoutes = require("./routes/htmlRoutes");
 
 var db = require("./models");
 
@@ -39,7 +40,7 @@ app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+app.use(htmlRoutes);
 app.use("/auth", authRoutes);
 
 var syncOptions = { force: false };
@@ -51,7 +52,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
