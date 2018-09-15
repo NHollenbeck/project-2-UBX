@@ -5,7 +5,9 @@
         <div class="col-sm-12">
             {{#each events}}
             <div class="card mr-2 ml-2" style="width: 18rem; float: left;">
-                <img class="card-img-top" src="https://via.placeholder.com/286x180" alt="Card image cap">
+                <div style="width: 286px; height: 180px; background-image: url({{dataValues.imgurl}}); background-position: center;     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;"></div>
                 <div class="card-body">
                     <h5 class="card-title">{{dataValues.title}}</h5>
                     <p class="card-text">Time: {{dataValues.time}}</p>

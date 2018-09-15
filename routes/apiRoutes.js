@@ -71,10 +71,9 @@ module.exports = function(app) {
       });
   });
 
-app.get('/api/eventlist', function(req, res) {
-  res.json()
-});
-
+  app.get("/api/eventlist", function(req, res) {
+    res.json();
+  });
 
   // Create a new study group
   app.post("/api/new-group", function(req, res) {
@@ -112,10 +111,3 @@ app.get('/api/eventlist', function(req, res) {
     });
   });
 };
-
-/*  // Delete an profile by id
-  app.delete("/api/profile/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  }); */
