@@ -3,10 +3,12 @@ require("./config/passport-setup");
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
+const HandlebarsIntl = require("handlebars-intl");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
 const authRoutes = require("./routes/auth-routes");
+const htmlRoutes = require("./routes/htmlRoutes");
 
 var db = require("./models");
 
@@ -17,6 +19,7 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/public", express.static("public"));
+// HandlebarsIntl.registerWith(exphbs);
 
 // Passport Init & Session
 app.use(
@@ -39,7 +42,7 @@ app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+app.use(htmlRoutes);
 app.use("/auth", authRoutes);
 
 var syncOptions = { force: false };
@@ -51,7 +54,7 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
+db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
